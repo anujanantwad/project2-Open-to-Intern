@@ -35,6 +35,8 @@ const CreateCollege = async function (req, res) {
 
 const getCollege = async function (req, res) {
 
+  try {
+
     let filter = req.query
     if (Object.keys(filter).length == 0) return res.status(200).send({ status: true, msg: "query should be present" });
 
