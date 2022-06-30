@@ -22,10 +22,19 @@ const CreateCollege = async function (req, res) {
 
     // logoName
     if (!validator.isValid(data.logoLink)) return res.status(400).send({ status: false, msg: "LogoName is mandatory" })// validation of url required
-    if (!validator.isUrl(data.logoLink)) return res.status(400).send({ status: false, msg: "enter a valid logoname Logourl" })
+    if (!validator.isUrl(data.logoLink)) return res.status(400).send({ status: false, msg: "enter a valid logoname or url" })
 
-    const CreatedData = await CollegeModel.create(data)
-    res.status(201).send({ status: true, data: CreatedData })
+
+    const cData = await CollegeModel.create(data)
+    let obj = {
+      name: cData.name,
+      fullName: cData.fullName,
+      logoLink: cData.logoLink,
+      isDeleted: false
+    }
+
+
+    res.status(201).send({ status: true, data: obj })
   }
   catch (err) {
     res.status(500).send({ msg: err.message })
