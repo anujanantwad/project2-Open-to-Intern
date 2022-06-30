@@ -3,5 +3,28 @@
     "express": "^4.18.1",
     "mongoose": "^6.4.1",
     "nodemon": "^2.0.18"
-  }
+  },
+  "name": "open-to-intern",
+  "description": "2nd project of functionUp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girija1348328/open-to-intern.git"
+  },
+  "keywords": [
+    "project-2",
+    "group",
+    "34"
+  ],
+  "author": "lina godbole, madhav anantwad,girija mohanta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/girija1348328/open-to-intern/issues"
+  },
+  "homepage": "https://github.com/girija1348328/open-to-intern#readme"
 }
