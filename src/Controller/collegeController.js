@@ -18,6 +18,8 @@ const CreateCollege = async function (req, res) {
     // fullname
     if (!data.fullName) return res.status(400).send({ status: false, message: "fullName is required" })
 
+
+
     // logoName
     if (!validator.isValid(data.logoLink)) return res.status(400).send({ status: false, msg: "LogoName is mandatory" })// validation of url required
     if (!validator.isUrl(data.logoLink)) return res.status(400).send({ status: false, msg: "enter a valid logoname Logourl" })
@@ -29,10 +31,9 @@ const CreateCollege = async function (req, res) {
     res.status(500).send({ msg: err.message })
   }
 }
+// ----------Get College Api------------------------------
 
 const getCollege = async function (req, res) {
-
-  try {
 
     let filter = req.query
     if (Object.keys(filter).length == 0) return res.status(200).send({ status: true, msg: "query should be present" });

@@ -1,6 +1,11 @@
 const internModel = require("../Model/internModel")
 const CollegeModel = require("../Model/CollegeModel")
 const validator = require("../validator/validate")
+
+
+
+// create intern
+
 const CreateIntern = async function (req, res) {
     try {
         let data = req.body
@@ -23,13 +28,20 @@ const CreateIntern = async function (req, res) {
         if (checknumber) return res.status(400).send({ status: false, msg: "Mobile Number Already Used" })
 
         // collegeID
-        if (!data.collegeId) return res.status(400).send({ status: false, message: "collegeId is required" });
-        const validateId = await CollegeModel.findById({ _id: data.collegeId })
+        if (!data.collegeName) return res.status(400).send({ status: false, message: "collegeName is required" });
+        const validateId = await CollegeModel.findOne({ name: data.collegeName })
         if (!validateId) return res.status(400).send({ status: false, msg: "college is not valid or not exist" })
         //--------------------------
-
-        const CreatedData = await internModel.create(data)
-        res.status(201).send({ status: true, msg: CreatedData })
+        req.body.collegeId = validateId._id
+        await internModel.create(data)
+        let obj = {
+            isDeleted: false,
+            name: data.name,
+            email: data.email,
+            mobile: data.mobile,
+            collegeId: validateId._id
+        }
+        res.status(201).send({ status: true, msg: obj })
     } catch (err) {
         res.status(500).send({ msg: err.message })
     }
